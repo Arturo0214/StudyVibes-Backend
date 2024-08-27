@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/admins', require('./routes/adminRoutes'));
+app.use('/users', require('./routes/userRoutes'));
 app.use('/quotes', require('./routes/quoteRoutes'));
 
 app.use((req, res, next) => {

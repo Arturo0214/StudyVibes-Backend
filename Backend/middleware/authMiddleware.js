@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
-const Admin = require('../models/adminModel');
+const User = require('../models/userModel');
 
 const protect = asyncHandler (async(req, res, next) => {
   let token 
@@ -11,7 +11,7 @@ const protect = asyncHandler (async(req, res, next) => {
           //verificar la firma del token
           const decoded = jwt.verify(token, process.env.JWT_SECRET)
           //obtener el usuario/admin del token
-          req.admin = await Admin.findById(decoded.id).select('-password')
+          req.user = await User.findById(decoded.id).select('-password')
           next()
       } catch (error) {
           console.log(error)
